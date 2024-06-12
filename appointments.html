@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Manage Appointments</title>
+	<link rel="stylesheet" href="/css/main.min.css">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+	<script type="module" src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="module" src="/js/navbar-admin.js"></script>
+	<script type="module" src="/js/appointments.js"></script>
+</head>
+
+<body class="bg-light">
+	<nav class="navbar fixed-top navbar-expand-md bg-primary shadow py-0">
+		<div class="container-fluid justify-content-center">
+				<div class="row">
+					<a class="navbar-brand col-9 col-md-2 ms-0 ms-md-4 me-2" href="#"><img src="/images/logo-light-text.png" alt="HealthHub" height="25"/></a>
+				</div>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse col-9 col-md-10 navbar-collapse justify-content-end" id="navbarSupportedContent">
+				<div class="col-12 col-md-6"></div>
+				<ul class="navbar-nav nav-underline col-12 col-md-auto justify-content-center mb-2 mb-lg-0">
+					<li id="navDashboard" class="nav-item col-sm-auto px-2 text-center text-white py-2">
+						<a class="nav-link" href="dashboard.html">Dashboard</a>
+					</li>
+					<li class="nav-item col-sm-auto px-2 text-center py-2 bg-tertiary rounded-top-3">
+						<a class="nav-link active" aria-current="page" href="#">Track Appointments</a>
+					</li>
+					<li class="nav-item col-sm-auto px-2 text-center text-white py-2">
+						<a class="nav-link" href="patients.html">Patients</a>
+					</li>
+					<li class="nav-item nav-btn-avatar col-sm-auto px-3 text-center py-auto dropdown">
+						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img class="user-avatar my-0 py-0" alt="">
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item text-center dropdown-text-email disabled text-primary" href="#">Email Address</a></li>
+							<li><a class="dropdown-item text-center text-danger" href="#" id="btnLogout">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+		    </div>
+		</div>
+	</nav>
+
+	<div class="row">
+		<div class="col-4 px-4 py-4">
+			<div class="col-12 bg-white rounded p-4">
+				<h4>Doctor Location</h4>
+					<div class="row">
+						<div class="row mx-auto text-center justify-content-center">
+							<div id="btnPrev" class="col-2 text-end"><button type="button" class="btn btn-primary mt-1"><i class="bi bi-caret-left-fill fs-6 text-white"></i></button></div>
+							<div class="col-8 text-center"><h6 id="tvCalendarDate" class="text-dark"></h6></div>
+							<div id="btnNext" class="col-2 text-start"><button type="button" class="btn btn-primary mt-1"><i class="bi bi-caret-right-fill fs-6 text-white"></i></button></div>
+						</div>
+
+						<div class="col">
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvSun" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center">
+									<select id="selSundayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvMon" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selMondayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvTue" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selTuesdayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvWed" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selWednesdayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvThu" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selThursdayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvFri" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selFridayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="row col-4 text-center rounded mx-auto px-0 bg-secondary py-2">
+									<p id="tvSat" class="col-12 fw-bold text-center p-0 m-0 fw-500">May 30</p>
+								</div>
+								<div class="col fw-bold text-center my">
+									<select id="selSaturdayLocation" class="form-select" aria-label="Default select example">
+										<option selected>Not Set</option>
+										<option value="Albiga">Albiga</option>
+										<option value="Apoloy">Apoloy</option>
+										<option value="Bonawon">Bonawon</option>
+										<option value="Bonbonon">Bonbonon</option>
+										<option value="Cabangahan">Cabangahan</option>
+										<option value="Canaway">Canaway</option>
+										<option value="Casala-an">Casala-an</option>
+										<option value="Caticugan">Caticugan</option>
+										<option value="Datag">Datag</option>
+										<option value="Giliga-on">Giliga-on</option>
+										<option value="Inalad">Inalad</option>
+										<option value="Malabuhan">Malabuhan</option>
+										<option value="Maloh">Maloh</option>
+										<option value="Mantiquil">Mantiquil</option>
+										<option value="Mantuyop">Mantuyop</option>
+										<option value="Napacao">Napacao</option>
+										<option value="Poblacion I">Poblacion I</option>
+										<option value="Poblacion II">Poblacion II</option>
+										<option value="Poblacion III">Poblacion III</option>
+										<option value="Poblacion IV">Poblacion IV</option>
+										<option value="Salag">Salag</option>
+										<option value="San Jose">San Jose</option>
+										<option value="Sandulot">Sandulot</option>
+										<option value="Si-it">Si-it</option>
+										<option value="Sumaliring">Sumaliring</option>
+										<option value="Tayak">Tayak</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				<h4 id="tvDoctorName" class="mt-4">Doctor Name</h4>
+				<div id="divDoctorName" class="input-group input-group mx-auto">
+					<input id="etDoctorName" type="text" class="form-control rounded-left" placeholder="Full Name" aria-label="Full Name">
+					<button class="btn btn-primary ms-2 rounded disabled" type="button" id="btnSaveDoctorName">Save</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-8 pe-4 py-4">
+			<div class="col-12 bg-white rounded p-4">
+				<h4>Patient Appointments</h5>
+				<div class="row pt-3 px-5 d-none">
+					<div class="w-50 input-group input-group mx-auto">
+						<input id="etFirstName" type="text" class="form-control rounded-left" placeholder="First Name" aria-label="First Name">
+						<input id="etLastName" type="text" class="form-control" placeholder="Last Name" aria-label="Last Name">
+						<button class="btn btn-primary search-button rounded-end" type="button" id="btnSearchByName">
+							<i class="fi fi-br-search text-light me-1" style="font-size: 0.8rem;"></i>
+							Filter by Name
+						</button>
+					</div>
+				</div>
+			
+				<div class="row pt-3 px-5">
+					<div class="w-75 input-group input-group mx-auto">
+						<input id="etPatientId" type="text" class="form-control rounded-left" placeholder="Patient ID Number" aria-label="Filter Patient ID #">
+						<button class="btn btn-primary search-button rounded-end" type="button" id="btnSearch">
+							<i class="fi fi-br-search text-light me-1" style="font-size: 0.8rem;"></i>
+							Filter By ID
+						</button>
+						<button class="btn btn-outline-danger ms-2 rounded" type="button" id="btnClearFilter">
+							<i class="fi fi-br-cross text-danger me-1" style="font-size: 0.8rem;"></i>
+							Clear Filters
+						</button>
+					</div>
+				</div>
+			
+				<div id="tabsAppointments" class="text-center mt-3">
+					<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+						<input type="radio" class="btn-check" name="btnradio" id="btnAppointmentsToday" autocomplete="off" checked>
+						<label id="btnAppointmentsTodayLabel" class="btn btn-outline-primary px-4 me-4 rounded-end" for="btnAppointmentsToday">Today</label>
+					  
+						<input type="radio" class="btn-check" name="btnradio" id="btnUpcoming" autocomplete="off">
+						<label id="btnUpcomingLabel" class="btn btn-outline-primary px-4 rounded-start" for="btnUpcoming">Upcoming</label>
+					  
+						<input type="radio" class="btn-check" name="btnradio" id="btnCompleted" autocomplete="off">
+						<label id="btnCompletedLabel" class="btn btn-outline-primary px-4" for="btnCompleted">Completed</label>
+			
+						<input type="radio" class="btn-check" name="btnradio" id="btnMissed" autocomplete="off">
+						<label id="btnMissedLabel" class="btn btn-outline-primary px-4" for="btnMissed">Missed</label>
+			
+						<input type="radio" class="btn-check" name="btnradio" id="btnDeclined" autocomplete="off">
+						<label id="btnDeclinedLabel" class="btn btn-outline-primary px-4" for="btnDeclined">Declined</label>
+					</div>
+			
+				<div id="appointmentsContainer">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalChat" class="modal fade" tabindex="-1" aria-labelledby="tvChatTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+			<div id="divModalContent" class="modal-content">
+				<div class="modal-header">
+					<h1 id="tvChatTitle" class="col-6 modal-title fs-5 text-start">Chat</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div id="divModalBody" class="modal-body vh-100 col-12">
+					<div id="divChatWrapper" class="col-12">
+						<div id="divChatContainer" class="col-12">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="input-group mb-3">
+						<textarea id="etChatBox" type="text" class="form-control me-3 rounded" placeholder="Write a message..." aria-label="Write a message..."></textarea>
+						<div>
+							<button id="btnSend" class="btn btn-primary rounded" type="button"><i class="bi bi-send-fill text-white fs-6"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalAddMedicalEntry" class="modal fade" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+			<div id="divModalContent" class="modal-content">
+				<div class="modal-header">
+					<h1 class="col-6 modal-title fs-5 text-start">Add Medical Entry</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h6 class="text-start nurseui">Vital Information</h6>
+					<div class="row nurseui">
+						<div class="col-12 col-sm-6">
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvBloodPressure" type="text" class="form-control blood-pressure-validator" placeholder="Blood Pressure" required>
+									<label for="tvBloodPressure">Blood Pressure</label>
+								</div>
+								<span class="input-group-text">mmHg</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's blood pressure.
+								</div>
+							</div>
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvRespiratoryRate" type="text" class="form-control respiratory-rate-validator" placeholder="Respiratory Rate" required>
+									<label for="tvRespiratoryRate">Respiratory Rate</label>
+								</div>
+								<span class="input-group-text">bpm</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's respiratory rate.
+								</div>
+							</div>
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvBodyTemperature" type="text" class="form-control body-temperature-validator" placeholder="Body Temperature" required>
+									<label for="tvBodyTemperature">Body Temperature</label>
+								</div>
+								<span class="input-group-text">°C</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's body temperature.
+								</div>
+							</div>
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvPulseRate" type="text" class="form-control body-temperature-validator" placeholder="Pulse Rate" required>
+									<label for="tvPulseRate">Pulse Rate</label>
+								</div>
+								<span class="input-group-text">bpm</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's pulse rate.
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6">
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvO2SAT" type="text" class="form-control o2sat-validator" placeholder="O2SAT" required>
+									<label for="tvO2SAT">O2SAT</label>
+								</div>
+								<span class="input-group-text">%</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's O2SAT.
+								</div>
+							</div>
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvHeight" type="text" class="form-control height-validator" placeholder="Height" required>
+									<label for="tvHeight">Height</label>
+								</div>
+								<span class="input-group-text">cm</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's height.
+								</div>
+							</div>
+							<div class="input-group has-validation col-6 mb-2">
+								<div class="form-floating">
+									<input id="tvWeight" type="text" class="form-control weight-validator" placeholder="Weight" required>
+									<label for="tvWeight">Weight</label>
+								</div>
+								<span class="input-group-text">kg</span>
+								<div class="invalid-feedback">
+									Please indicate the patient's weight.
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h6 class="text-start doctorui">Diagnosis and Treatment</h6>
+					<div class="input-group has-validation col-12 col-sm-6 mb-2 doctorui">
+						<div class="form-floating">
+							<input id="tvChiefComplaint" type="text" class="form-control chief-complaint-validator" placeholder="Chief Complaint" required>
+							<label for="tvChiefComplaint">Chief Complaint</label>
+						</div>
+						<div class="invalid-feedback">
+							Please specify the patient's chief complaint.
+						</div>
+					</div>
+					
+					<div class="input-group has-validation col-12 col-sm-6 mb-2 doctorui">
+						<div class="form-floating">
+							<textarea id="tvDiagnosis" type="text" class="form-control diagnosis-validator" placeholder="Diagnosis" required></textarea>
+							<label for="tvDiagnosis">Diagnosis</label>
+						</div>
+						<div class="invalid-feedback">
+							Please state your diagnosis.
+						</div>
+					</div>
+
+					<div class="input-group has-validation col-12 col-sm-6 mb-2 doctorui">
+						<div class="form-floating">
+							<textarea id="tvMedications" type="text" class="form-control medications-validator" placeholder="Medications" required></textarea>
+							<label for="tvMedications">Medications</label>
+						</div>
+						<div class="invalid-feedback">
+							Please enlist the medications for the patient.
+						</div>
+					</div>
+					
+					<div class="input-group has-validation col-12 col-sm-6 mb-2 doctorui">
+						<div class="form-floating">
+							<textarea id="tvTreatmentPlan" type="text" class="form-control treatment-plan-validator" placeholder="Treatment Plan" required></textarea>
+							<label for="tvTreatmentPlan">Treatment Plan</label>
+						</div>
+						<div class="invalid-feedback">
+							Please state the treatment plan for this diagnosis.
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="btnCancel" class="btn btn-light rounded float-end" type="button" data-bs-dismiss="modal">Cancel</button>
+					<button id="btnAddMedicalEntry" class="btn btn-primary rounded float-end" type="button">Add Entry</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalViewUserMedicalHistory" class="modal fade" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+			<div id="divModalContent" class="modal-content">
+				<div class="modal-header">
+					<h1 id="tvMedicalHistoryPatientName" class="col-10 modal-title fs-5 text-start">Medical History</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body bg-light">
+					<div id="divMedicalHistoryContainer">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</body>
+</html>

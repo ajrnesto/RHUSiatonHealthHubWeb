@@ -1,17 +1,17 @@
 // imports
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js';
-import { getAuth } from '../node_modules/firebase/firebase-auth.js';
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js';
-import { getStorage } from "../node_modules/firebase/firebase-storage.js";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js';
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-storage.js";
 
 export const app = initializeApp({
-	apiKey: "AIzaSyBHj7ai9DnMGMO8jHvchLUxnbmrVST8WhI",
-	authDomain: "j-and-j-motorparts.firebaseapp.com",
-	projectId: "j-and-j-motorparts",
-	storageBucket: "j-and-j-motorparts.appspot.com",
-	messagingSenderId: "497755068532",
-	appId: "1:497755068532:web:6fe41ea958a74f85281921",
-	measurementId: "G-P1S76JTRLM"
+  apiKey: "AIzaSyCTa_md7FJPXv4QArAXkxTjivPj5fwVMII",
+  authDomain: "healthhub-siaton.firebaseapp.com",
+  projectId: "healthhub-siaton",
+  storageBucket: "healthhub-siaton.appspot.com",
+  messagingSenderId: "862008777831",
+  appId: "1:862008777831:web:cf22aaa48a9b48794f88c2",
+  measurementId: "G-63FW62WRP6"
 });
 
 export const auth = getAuth(app);

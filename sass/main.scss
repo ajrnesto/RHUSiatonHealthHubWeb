@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 /* custom variables go here */
 
 // color theming
-$primary: #2980ba;
-//$secondary: #68A357;
-$secondary: #2980ba;
-$light: #f7f7f7;
-$dark: #5a5a5a;
-$danger: #e64c3c;
-$info: #2980ba;
-$success: #32965D;
+$primary: #6AD27D;
+//$secondary: #8ECDDD;
+$secondary: #B7FFB6;
+$tertiary: #B7FFB6;
+$light: #F2FFF2;
+$dark: #2C302E;
+$danger: #F55D3E;
+$info: #6abad2;
+$success: #0f631f;
 
 // icons
 i {
@@ -20,25 +21,58 @@ i {
 }
 
 // font theming
-$font-family-sans-serif: "Open Sans";
-$headings-font-family: "Nunito";
+$font-family-sans-serif: "Quicksand";
+$headings-font-family: "Quicksand";
 $headings-font-weight: 700;
 $headings-color: $primary;
 
 // navbar 
 $nav-pills-link-active-bg: $primary;
 
-.nav-link.active{
-    color: white !important;
+.nav-link{
+  color: white !important;
+}
+
+.nav-pill-item {
+	color: $primary !important;
+}
+.nav-pill-item.active {
+	color: white !important;
 }
 
 // button theming
-.btn-primary {
+.btn-primary, .btn-danger {
 	color: white !important;
 }
-.btn-outline-primary:hover, .btn-outline-danger:hover, .btn-outline-dark:hover {
-    color: white !important;
+
+.btn-outline-danger:hover, .btn-outline-danger:hover i {
+	color: white !important;
 }
+
+.btn-outline-primary:hover, .btn-outline-primary:hover i {
+	color: white !important;
+	background-color: $primary !important;
+}
+
+input[type="radio"]:checked+label{
+	color: white !important;
+}
+
+// .btn-outline-primary:hover, .btn-outline-primary:hover i {
+// 	color: white !important;
+// }
+
+// dropdown theming
+.dropdown-menu {
+	max-height: 400px;
+	overflow-y: auto;
+}
+// .dropdown-toggle {
+// 	overflow: hidden;
+// 	white-space: nowrap;
+// 	max-width: 10ch;
+//   text-overflow: ellipsis;
+// }
 
 // form theming
 :not(.search-button) {

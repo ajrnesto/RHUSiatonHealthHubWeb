@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Schedule</title>
+        <link rel="stylesheet" href="/css/main.min.css">
+        <link rel="stylesheet" href="/css/global.css">
+		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <script type="module" src="/js/navbar-admin.js"></script>
+</head>
+
+<body class="bg-light">
+	<nav class="navbar sticky-top navbar-expand-md bg-primary shadow py-0">
+		<div class="container-fluid justify-content-center">
+				<div class="row">
+					<a class="navbar-brand col-9 col-md-2 ms-0 ms-md-4 me-2" href="#"><img src="/images/logo-light-text.png" alt="HealthHub" height="25"/></a>
+				</div>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse col-9 col-md-10 navbar-collapse justify-content-end" id="navbarSupportedContent">
+				<div class="col-12 col-md-6"></div>
+				<ul class="navbar-nav nav-underline col-12 col-md-auto justify-content-center mb-2 mb-lg-0">
+					<!--li class="nav-item col-sm-auto px-3 text-center py-2">
+						<a class="nav-link" href="dashboard.html">Dashboard</a>
+					</li-->
+					<li class="nav-item nav-btn-track-appointments col-sm-auto px-2 text-center py-2 bg-tertiary rounded-top-3">
+						<a class="nav-link active" aria-current="page" href="#">Schedule</a>
+					</li>
+					<li class="nav-item nav-btn-cart col-sm-auto px-2 text-center text-white py-2">
+						<a class="nav-link" href="orders.html">Patients</a>
+					</li>
+					<li class="nav-item nav-btn-avatar col-sm-auto px-3 text-center py-auto dropdown">
+						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img class="user-avatar my-0 py-0" alt="">
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item text-center dropdown-text-email disabled text-primary" href="#">Email Address</a></li>
+							<li><a class="dropdown-item text-center text-danger" href="#" id="btnLogout">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+		    </div>
+		</div>
+	</nav>
+	
+	<div class="col-12">
+		<div class="p-4">
+			<div class="row">
+				<div class="row mx-auto text-center justify-content-center">
+					<div id="btnPrev" class="col-1 text-end"><button type="button" class="btn btn-primary mt-1"><i class="bi bi-caret-left-fill fs-6 text-white"></i></button></div>
+					<div class="col-auto text-center"><h1 id="tvCalendarDate" class="text-dark"></h1></div>
+					<div id="btnNext" class="col-1 text-start"><button type="button" class="btn btn-primary mt-1"><i class="bi bi-caret-right-fill fs-6 text-white"></i></button></div>
+				</div>
+				<div class="row rounded mx-auto px-0 bg-secondary py-2 mt-2">
+					<div class="col fw-bold text-center"><p class="py-0 my-0 fw-500"></p></div>
+					<div class="col fw-bold text-center"><p id="tvSun" class="py-0 my-0 fw-500"></p>(Sun)</div>
+					<div class="col fw-bold text-center"><p id="tvMon" class="py-0 my-0 fw-500"></p>(Mon)</div>
+					<div class="col fw-bold text-center"><p id="tvTue" class="py-0 my-0 fw-500"></p>(Tue)</div>
+					<div class="col fw-bold text-center"><p id="tvWed" class="py-0 my-0 fw-500"></p>(Wed)</div>
+					<div class="col fw-bold text-center"><p id="tvThu" class="py-0 my-0 fw-500"></p>(Thu)</div>
+					<div class="col fw-bold text-center"><p id="tvFri" class="py-0 my-0 fw-500"></p>(Fri)</div>
+					<div class="col fw-bold text-center"><p id="tvSat" class="py-0 my-0 fw-500"></p>(Sat)</div>
+				</div>
+				<div class="row mx-auto px-0 py-2 mt-3">
+					<div class="col fw-bold text-center">
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >Location</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >8:00 AM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >9:00 AM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >10:00 AM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >11:00 AM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >1:00 PM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >2:00 PM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >3:00 PM</button>
+						<button class="btn cursor-default btn-white disabled border-white col-12 mb-2" >4:00 PM</button>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selSundayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divSunday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<!--div id="divMonday" class="col fw-bold text-center border border-primary border-2 rounded"-->
+					<div class="col fw-bold text-center">
+						<select id="selMondayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divMonday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selTuesdayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divTuesday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selWednesdayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divWednesday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selThursdayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divThursday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selFridayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divFriday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+					<div class="col fw-bold text-center">
+						<select id="selSaturdayLocation" class="form-select mb-2" aria-label="Default select example">
+							<option selected>Closed</option>
+							<option value="Albiga">Albiga</option>
+							<option value="Apoloy">Apoloy</option>
+							<option value="Bonawon">Bonawon</option>
+							<option value="Bonbonon">Bonbonon</option>
+							<option value="Cabangahan">Cabangahan</option>
+							<option value="Canaway">Canaway</option>
+							<option value="Casala-an">Casala-an</option>
+							<option value="Caticugan">Caticugan</option>
+							<option value="Datag">Datag</option>
+							<option value="Giliga-on">Giliga-on</option>
+							<option value="Inalad">Inalad</option>
+							<option value="Malabuhan">Malabuhan</option>
+							<option value="Maloh">Maloh</option>
+							<option value="Mantiquil">Mantiquil</option>
+							<option value="Mantuyop">Mantuyop</option>
+							<option value="Napacao">Napacao</option>
+							<option value="Poblacion I">Poblacion I</option>
+							<option value="Poblacion II">Poblacion II</option>
+							<option value="Poblacion III">Poblacion III</option>
+							<option value="Poblacion IV">Poblacion IV</option>
+							<option value="Salag">Salag</option>
+							<option value="San Jose">San Jose</option>
+							<option value="Sandulot">Sandulot</option>
+							<option value="Si-it">Si-it</option>
+							<option value="Sumaliring">Sumaliring</option>
+							<option value="Tayak">Tayak</option>
+						</select>
+						<div id="divSaturday">
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+							<button type="button" class="btn btn-white border-white col-12 mb-2" disabled>Closed</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalViewAppointment" class="modal fade" tabindex="-1" aria-labelledby="tvAppointmentType" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 id="tvAppointmentType" class="col-6 modal-title fs-5">View Appointment</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row justify-content-center">
+							<div class="col-12 col-sm-12">
+								<div class="input-group has-validation mb-2">
+									<div class="col-12 text-center">
+										<p id="tvFullName" class="my-0 py-0 text-primary fs-5 fw-medium"></p>
+										<p id="tvMobile" class="my-0 py-0"></p>
+										<p id="tvEmail" class="my-0 py-0"></p>
+									</div>
+									<div class="col-12 text-center mt-2">
+										<button id="btnChat" type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-chat-dots-fill me-2 text-white fs-6"></i>Chat</button>
+										<button id="btnAppointmentHistory" type="button" class="btn btn-outline-primary"><i class="bi bi-file-earmark-medical-fill me-2 fs-6"></i></i>Appointment History</button>
+										<button id="btnMedicalHistory" type="button" class="d-none btn btn-outline-primary"><i class="bi bi-clipboard2-pulse-fill me-2 fs-6"></i></i>Medical History</button>
+									</div>
+									<div class="row col-12 d-none">
+										<div class="col-12">
+											<hr>
+										</div>
+										<div class="col-6">
+											<h6>Chief Complaint</h6>
+										</div>
+										<div class="col-6">
+											<h6>Vital Information</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalChat" class="modal fade" tabindex="-1" aria-labelledby="tvChatTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+			<div id="divModalContent" class="modal-content">
+				<div class="modal-header">
+					<h1 id="tvChatTitle" class="col-6 modal-title fs-5">Chat</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div id="divModalBody" class="modal-body vh-100 col-12">
+					<div id="divChatWrapper" class="col-12">
+						<div id="divChatContainer" class="col-12">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="input-group mb-3">
+						<textarea id="etChatBox" type="text" class="form-control me-3 rounded" placeholder="Write a message..." aria-label="Write a message..."></textarea>
+						<div>
+							<button id="btnSend" class="btn btn-primary rounded" type="button"><i class="bi bi-send-fill text-white fs-6"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modalConfirmDelete" class="modal fade" tabindex="-1" aria-labelledby="tvConfirmDeleteTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 id="tvConfirmDeleteTitle" class="modal-title fs-5 text-danger">Confirm Delete</h1>
+					<button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="fs-6" id="tvConfirmDeleteMessage"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light py-2" data-bs-dismiss="modal">Cancel</button>
+					<button id="btnDelete" type="button" class="btn btn-danger text-white px-3">Delete Category</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="/js/schedule.js"></script>
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

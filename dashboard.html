@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+		<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+        <link rel="stylesheet" href="/css/main.min.css">
+        <link rel="stylesheet" href="/css/global.css">
+        <script type="module" src="/js/navbar-admin.js"></script>
+        <script type="module" src="/js/dashboard.js"></script>
+</head>
+
+<body class="bg-light">
+	<nav class="navbar fixed-top navbar-expand-md bg-primary shadow py-0">
+		<div class="container-fluid justify-content-center">
+				<div class="row">
+					<a class="navbar-brand col-9 col-md-2 ms-0 ms-md-4 me-2" href="#"><img src="/images/logo-light-text.png" alt="HealthHub" height="25"/></a>
+				</div>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse col-9 col-md-10 navbar-collapse justify-content-end" id="navbarSupportedContent">
+				<div class="col-12 col-md-6"></div>
+				<ul class="navbar-nav nav-underline col-12 col-md-auto justify-content-center mb-2 mb-lg-0">
+					<li class="nav-item col-sm-auto px-2 text-center text-white py-2">
+						<a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+					</li>
+					<li class="nav-item col-sm-auto px-2 text-center py-2 bg-tertiary rounded-top-3">
+						<a class="nav-link" href="appointments.html">Track Appointments</a>
+					</li>
+					<li class="nav-item col-sm-auto px-2 text-center text-white py-2">
+						<a class="nav-link" href="patients.html">Patients</a>
+					</li>
+					<li class="nav-item nav-btn-avatar col-sm-auto px-3 text-center py-auto dropdown">
+						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img class="user-avatar my-0 py-0" alt="">
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item text-center dropdown-text-email disabled text-primary" href="#">Email Address</a></li>
+							<li><a class="dropdown-item text-center text-danger" href="#" id="btnLogout">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+		    </div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-4 container px-4 pt-4 pb-2">
+				<div id="cardPatients" class="row shadow rounded bg-white p-4 justify-content-center" role="button">
+					<h5 class="text-center">Patients</h5>
+					<p id="tvEmptyPatients" class="d-none text-center mb-0 pb-0">No data to display</p>
+					<div id="divPatients" class="d-none col-8 text-center">
+						<canvas id="chartPatients"></canvas>
+					</div>
+				</div>
+			</div>
+	
+			<div class="col-4 container px-4 pt-4 pb-2">
+				<div id="cardAppointmentsToday" class="row shadow rounded bg-white p-4 justify-content-center" role="button">
+					<h5 class="text-center">Appointments Today</h5>
+					<p id="tvEmptyAppointmentsToday" class="d-none text-center mb-0 pb-0">No data to display</p>
+					<div id="divAppointmentsToday" class="d-none col-8 text-center">
+						<canvas id="chartAppointmentsToday"></canvas>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-4 container px-4 pt-4">
+				<div id="cardAppointmentsThisMonth" class="row shadow rounded bg-white p-4 justify-content-center" role="button">
+					<h5 class="text-center">Appointments This Month</h5>
+					<p id="tvEmptyAppointmentsThisMonth" class="d-none text-center mb-0 pb-0">No data to display</p>
+					<div id="divAppointmentsThisMonth" class="d-none col-8 text-center">
+						<canvas id="chartAppointmentsThisMonth"></canvas>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-12 container px-4 pt-4 pb-2">
+				<div id="cardAppointmentHistory" class="row shadow rounded bg-white p-4 justify-content-center" role="button">
+					<h5 class="text-center">Appointments History</h5>
+					<p id="tvEmptyAppointmentHistory" class="d-none text-center mb-0 pb-0">No data to display</p>
+					<div id="divAppointmentHistory" class="d-none col-8 text-center">
+						<canvas id="chartAppointmentHistory"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="container px-4 pt-4 pb-2">
+		<div id="cardAppointments" class="row rounded bg-white p-4 justify-content-center" role="button">
+			<h3 class="text-center">Appointments Today</h3>
+			<hr class="mt-2"/>
+			<div class="row">
+				<h6 id="tvConsultation" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvLaboratory" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvXray" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvHemoglobin" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvFastingBloodSugar" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvUrinalysis" class="col-2 display-5 text-dark text-center">0</h3>
+			</div>
+			<div class="row">
+				<p class="col-2 text-dark text-center">Consultation</p>
+				<p class="col-2 text-dark text-center">Laboratory</p>
+				<p class="col-2 text-dark text-center">X-Ray</p>
+				<p class="col-2 text-dark text-center">Hemoglobin</p>
+				<p class="col-2 text-dark text-center">Fasting Blood Sugar</p>
+				<p class="col-2 text-dark text-center">Urinalysis</p>
+			</div>
+			<div class="row">
+				<h6 id="tvTbdots" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvFamilyPlanning" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvMedicalCertificate" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvBirthingHome" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvImmunization" class="col-2 display-5 text-dark text-center">0</h3>
+				<h6 id="tvCircumcision" class="col-2 display-5 text-dark text-center">0</h3>
+			</div>
+			<div class="row">
+				<p class="col-2 text-dark text-center">TB-DOTS</p>
+				<p class="col-2 text-dark text-center">Family Planning</p>
+				<p class="col-2 text-dark text-center">Medical Certificate</p>
+				<p class="col-2 text-dark text-center">Birthing Home</p>
+				<p class="col-2 text-dark text-center">Immunization</p>
+				<p class="col-2 text-dark text-center">Circumcision</p>
+			</div>
+			<hr class="mt-2"/>
+		</div>
+	</div>
+
+	<div class="container px-2 pb-4">
+		<div class="row">
+			<div class="col-12 col-sm-5 container p-4">
+				<div class="row rounded bg-white p-4 justify-content-center">
+					<h3 class="text-center">Earnings</h3>
+					<hr class="mt-2"/>
+					<div class="row">
+						<h6 id="tvEarnings" class="col-12 display-6 text-dark text-center">₱0.00</h3>
+					</div>
+					<div class="row">
+						<p class="col-12 text-dark text-center">This Month</p>
+					</div>
+					<hr class="mt-2"/>
+				</div>
+			</div>
+		
+			<div class="col-12 col-sm-7 container p-4">
+				<div id="cardPatients" class="row rounded bg-white p-4 justify-content-center" role="button">
+					<h3 class="text-center">Patients</h3>
+					<hr class="mt-2"/>
+					<div class="row">
+						<h6 id="tvPatients" class="col-6 display-5 text-dark text-center">0</h3>
+						<h6 id="tvNewPatients" class="col-6 display-5 text-dark text-center">0</h3>
+					</div>
+					<div class="row">
+						<p class="col-6 text-dark text-center">All Patients</p>
+						<p class="col-6 text-dark text-center">New Patients This Month</p>
+					</div>
+					<hr class="mt-2"/>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
